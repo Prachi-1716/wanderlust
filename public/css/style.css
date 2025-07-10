@@ -1,0 +1,196 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+   width: 100%;
+   min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.c{
+    padding: 0 2rem;
+    flex: 1;
+}
+/* navbar */
+.navbar{
+    min-height: 5rem;
+    z-index: 100;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.fa-compass{
+    font-size: 2rem;
+    color: #fe424d;
+}
+.nav-link{
+    color: #222;
+}
+
+.search-box{
+    width: 18rem;
+    border-radius: 25px;
+    padding-left: 1rem;
+}
+.search-btn{
+    width: 5rem;
+    border-radius: 25px;
+}
+
+/* categories */
+.categories{
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;        /* Hide vertical scrollbar */
+    white-space: nowrap;
+    -ms-overflow-style: none;  /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none;    
+}
+
+.category{
+    text-align: center;
+}
+.category a{
+    color: #222;
+    text-decoration: none;
+    opacity: 0.7;
+}
+.category a:hover{
+    opacity: 1;
+}
+.category a p{
+    font-size: 0.8rem;
+}
+/* footer */
+.footer{
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #ebebeb;
+}
+.socials i{
+    font-size: 1.3rem;
+    color: black;
+}
+.socials, socials div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.socials div{
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2px;
+    
+}
+
+.socials p{
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.links a{
+    color: #222;
+    text-decoration: none;
+    font-size: small;
+    margin: 0.2rem;
+}
+
+.links a:hover{
+    text-decoration: underline;
+}
+
+/* listings */
+.card{
+    border: none; 
+}
+
+.card-img-top{
+    height: 17rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.card-img-top:hover{
+    opacity: 0.8;
+}
+.listings{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+} 
+.listings a{
+    text-decoration: none !important;
+}
+.card-body{
+   padding: 10px 0; 
+}
+
+.form-switch{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    width: 16rem;
+    border-radius: 15px; 
+}
+.form-check-input {
+  background-color: #fff; /* light gray by default */
+  border-color: #ccc;
+}
+.form-check-input:checked {
+  background-color: #070808; /* Bootstrap primary by default */
+  border-color: #7f8183;
+}
+
+.hide{
+    display: none;
+}
+/* new form */
+.btn{
+    background-color: #fe424d;
+    border: none;
+}
+
+
+/* show page */
+
+/* reviews */
+.review-card {
+    display: flex !important;
+
+}
+
+.review-btn{
+    background-color: #222;
+    color: #fff;
+}
+
+.review-card-title{
+    margin: 0;
+}
+
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}

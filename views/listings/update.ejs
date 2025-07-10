@@ -1,0 +1,72 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+  <body>
+    <h1>Edit Listing</h1>
+
+    <form enctype="multipart/form-data" action="/listings/<%=listing._id%>?_method=PATCH" class="needs-validation"
+      method="post" novalidate>
+      <div class="row">
+        <div class="col-8 offset-2">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="listing[title]" required id="title" class="form-control"
+              placeholder="Add a catchy title" value="<%=listing.title%>" required />
+            <div class="invalid-feedback">please enter a title</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Discription</label>
+            <textarea name="listing[description]" id="description" class="form-control" placeholder="write discription"
+              rows="3" cols="50" required><%= listing['description'] %></textarea>
+            <div class="invalid-feedback">Please write a short description</div>
+          </div>
+          <div class="mb2">
+            Previous image : <br>
+            <img src="<%= listing.image.url %>" alt="previous image" style="width: 150px; height: 100px">
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Select new Image</label>
+            <input type="file" name="listing[image]" id="image" class="form-control" placeholder="Add an image">
+            <div class="invalid-feedback">image should be valid.</div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-4">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" name="listing[price]" id="price" class="form-control" placeholder="1200"
+                value="<%=listing.price%>" required />
+              <div class="invalid-feedback">Price must be a valid number</div>
+            </div>
+
+            <div class="mb-3 col-md-8">
+              <label for="country" class="form-label">country</label>
+              <input type="text" name="listing[country]" id="country" class="form-control" placeholder="India"
+                value="<%=listing.country%>" required />
+              <div class="invalid-feedback">country should be valid.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="listing[location]" id="location" class="form-control"
+              placeholder="Jaipur, Rajastan" value="<%=listing.location%>" required />
+            <div class="invalid-feedback">location should be valid.</div>
+          </div>
+          <% const categories=[ 'trending' , 'farms' , 'rooms' , 'beachfront' , 'iconicCities' , 'amazingView'
+            , 'petFriendly' , 'pools' , 'luxury' , 'surfing' , 'boating' ]; %>
+
+            <select name="listing[category]" id="category" required class="form-select mb-3">
+              <option disabled <%=!listing.category ? 'selected' : '' %>>Select a category</option>
+
+              <% categories.forEach(cat=> { %>
+                <option value="<%= cat %>" <%=listing.category===cat ? 'selected' : '' %>>
+                  <%= cat.charAt(0).toUpperCase() + cat.slice(1).replace(/([A-Z])/g, ' $1' ) %>
+                </option>
+                <% }) %>
+            </select>
+
+            <button class="btn btn-danger mb-3">Save</button>
+        </div>
+      </div>
+    </form>
+  </body>

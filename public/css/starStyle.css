@@ -1,0 +1,110 @@
+.starability-result {
+  position: relative;
+  width: 150px;
+  height: 30px;
+  background-image: url("/star2.jpg");
+  background-position: 0 0;
+  background-size: 30px 60px;
+  background-repeat: repeat-x;
+  font-size: 0.1em;
+  color: transparent;
+}
+
+.starability-result::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 0;
+  background-image: url("/star2.jpg");
+  background-position: 0 -30px;
+  background-size: 30px 60px;
+  background-repeat: repeat-x;
+}
+
+/* Data-rating based fill */
+.starability-result[data-rating="5"]::after { width: 150px; }
+.starability-result[data-rating="4"]::after { width: 120px; }
+.starability-result[data-rating="3"]::after { width: 90px; }
+.starability-result[data-rating="2"]::after { width: 60px; }
+.starability-result[data-rating="1"]::after { width: 30px; }
+
+/* Retina display support */
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+  .starability-result {
+    background-size: 30px auto;
+  }
+  .starability-result::after {
+    background-size: 30px auto;
+  }
+}
+.starability-result {
+  transform: scale(0.4); /* shrink to 70% size */
+  transform-origin: left center; /* keep it aligned properly */
+  display: inline-block;
+  margin: 0;
+}
+/* Star container */
+.starability-slot {
+  display: block;
+  position: relative;
+  width: 150px;
+  height: 30px;
+  padding: 0;
+  border: none;
+}
+
+/* Hide radio buttons */
+.starability-slot > input {
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+}
+
+/* Star base style */
+.starability-slot > label {
+  position: relative;
+  float: right; /* ← makes stars appear left to right */
+  width: 30px;
+  height: 30px;
+  background-image: url("/star2.jpg");
+  background-position: 0 0; /* top half = unfilled */
+  background-size: 30px 60px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* Star fill overlay */
+.starability-slot > label::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("/star2.jpg");
+  background-position: 0 -30px; /* bottom half = filled */
+  background-size: 30px 60px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Filled stars after selection */
+.starability-slot > input:checked ~ label::before {
+  opacity: 1;
+}
+
+/* Hover preview */
+.starability-slot > input:hover ~ label::before {
+  opacity: 0;
+}
+.starability-slot > input:hover + label::before,
+.starability-slot > input:hover + label ~ label::before {
+  opacity: 1;
+}
+
+/* Optional focus ring */
+.starability-slot > input:focus + label {
+  outline: 1px dotted #999;
+}
