@@ -9,14 +9,13 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
-const asyncWrap = require("./utils/asyncWrap.js");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const listingController = require("./controllers/listings.js");
 
 const listings = require("./routes/listings.js");
 const reviews = require("./routes/reviews.js");
@@ -90,10 +89,7 @@ app.use((req,res,next)=>{
 
 
 app.use("/", users);
-app.get("/", asyncWrap(async (req, res, next) => {
-    let listings = await Listing.find();
-    res.render("listings/listings.ejs", { listings });
-}));
+app.get("/", listingController.showAllListings);
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
