@@ -69,7 +69,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT,() => {
     console.log("Listening from port 3000");
 });
 
