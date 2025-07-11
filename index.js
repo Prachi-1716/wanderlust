@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
+const asyncWrap = require("../utils/asyncWrap.js");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
@@ -87,7 +88,13 @@ app.use((req,res,next)=>{
 //     next();
 // });
 
+
 app.use("/", users);
+app.get("/", asyncWrap(async (req, res, next) => {
+    let listings = await Listing.find();
+    res.render("listings/listings.ejs", { listings });
+}));
+
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 

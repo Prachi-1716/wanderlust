@@ -7,9 +7,7 @@ const {listingSchema} = require("../schema.js");
 const {cloudinary} = require("../cloudConfig.js");
 
 module.exports.showAllListings = asyncWrap(async (req, res, next) => {
-    console.log("request reached");
     let listings = await Listing.find();
-    console.log('data fetched');
     res.render("listings/listings.ejs", { listings });
 });
 
