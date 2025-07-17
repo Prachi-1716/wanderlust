@@ -81,6 +81,10 @@ module.exports.updateListing = asyncWrap(async (req, res, next) => {
 
 module.exports.deleteListing = asyncWrap(async (req, res, next) => {
     let { id } = req.params;
+    let originalListing = await Listing.findById(id);
+    if(!originalListing) {
+        req.flash("error", "Listing not found");
+    }
     await cloudinary.uploader.destroy(originalListing.image.filename);
     let result = await Listing.findByIdAndDelete(id);
     // console.log(result);
